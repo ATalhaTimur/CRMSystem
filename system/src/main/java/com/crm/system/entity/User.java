@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class User {
@@ -14,13 +15,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)  // Make username unique
+    @Column(unique = true)
     private String username;
 
     private String password;
     private String role;
-    private LocalDateTime createdAt;  // Creation timestamp
-    private LocalDateTime updatedAt;  // Last update timestamp
+    private String region;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     // Getters and Setters
     public Long getId() {
@@ -55,6 +57,14 @@ public class User {
         this.role = role;
     }
 
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -69,5 +79,22 @@ public class User {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    // Formatted date and time methods
+    public String getFormattedCreatedAtDate() {
+        return createdAt != null ? createdAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) : "";
+    }
+
+    public String getFormattedCreatedAtTime() {
+        return createdAt != null ? createdAt.format(DateTimeFormatter.ofPattern("HH:mm:ss")) : "";
+    }
+
+    public String getFormattedUpdatedAtDate() {
+        return updatedAt != null ? updatedAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) : "";
+    }
+
+    public String getFormattedUpdatedAtTime() {
+        return updatedAt != null ? updatedAt.format(DateTimeFormatter.ofPattern("HH:mm:ss")) : "";
     }
 }

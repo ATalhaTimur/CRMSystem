@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
@@ -32,11 +33,16 @@ public class UserController {
         return userService.getUsersByRole(role);
     }
 
+    @GetMapping("/region/{region}")
+    public List<User> getUsersByRegion(@PathVariable String region) {
+        return userService.getUsersByRegion(region);
+    }
+
     @GetMapping("/created-after/{date}")
     public List<User> getUsersCreatedAfter(@PathVariable String date) {
         try {
-            // Convert the String date to LocalDateTime
-            LocalDateTime dateTime = LocalDateTime.parse(date);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+            LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
             return userService.getUsersCreatedAfter(dateTime);
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Invalid date format. Please use 'yyyy-MM-ddTHH:mm:ss' format.");

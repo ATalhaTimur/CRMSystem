@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
@@ -16,59 +15,39 @@ public class CustomerService {
     @Autowired
     private ICustomerRepository customerRepository;
 
-    // Get all customers
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
 
-    // Get customer by ID
     public Optional<Customer> getCustomerById(Long id) {
         return customerRepository.findById(id);
     }
 
-    // Save or update customer
     public Customer saveCustomer(Customer customer) {
-        customer.setUpdatedAt(LocalDate.now()); // Updated to LocalDate
+        customer.setUpdatedAt(LocalDate.now());
         if (customer.getRegistrationDate() == null) {
-            customer.setRegistrationDate(LocalDate.now()); // Updated to LocalDate
+            customer.setRegistrationDate(LocalDate.now());
         }
         return customerRepository.save(customer);
     }
 
-    // Delete customer by ID
     public void deleteCustomer(Long id) {
         customerRepository.deleteById(id);
     }
 
-    // Stream-based filtering to get customers created after a specific date
     public List<Customer> getCustomersCreatedAfter(LocalDate registrationDate) {
-        return customerRepository.findAll()
-                .stream()
-                .filter(customer -> customer.getRegistrationDate().isAfter(registrationDate))
-                .collect(Collectors.toList());
+        return customerRepository.findByRegistrationDateAfter(registrationDate);
     }
 
-    // Stream-based filtering to get customers by region
     public List<Customer> getCustomersByRegion(String region) {
-        return customerRepository.findAll()
-                .stream()
-                .filter(customer -> region.equals(customer.getRegion()))
-                .collect(Collectors.toList());
+        return customerRepository.findByRegion(region);
     }
 
-    // Find customers by first and last name
     public List<Customer> getCustomersByName(String firstName, String lastName) {
-        return customerRepository.findAll()
-                .stream()
-                .filter(customer -> customer.getFirstName().equals(firstName) && customer.getLastName().equals(lastName))
-                .collect(Collectors.toList());
+        return customerRepository.findByFirstNameAndLastName(firstName, lastName);
     }
 
-    // Find customer by email
     public Optional<Customer> getCustomerByEmail(String email) {
-        return customerRepository.findAll()
-                .stream()
-                .filter(customer -> customer.getEmail().equals(email))
-                .findFirst();
+        return Optional.ofNullable(customerRepository.findByEmail(email));
     }
 }
