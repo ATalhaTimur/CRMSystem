@@ -43,7 +43,7 @@ This project is a **Customer Relationship Management (CRM)** system designed to 
 
 ![Ekran Resmi 2024-09-29 00 42 16](https://github.com/user-attachments/assets/f22c9c77-e3e2-46dd-8e16-3a9ceb455c74)
 
-### Data Base 
+### DataBase 
 
 ![Ekran Resmi 2024-09-29 01 05 05](https://github.com/user-attachments/assets/f1e7f4e4-5bae-405f-81cc-cff3b785b8e6)
 
