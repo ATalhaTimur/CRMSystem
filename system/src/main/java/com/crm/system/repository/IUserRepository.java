@@ -11,19 +11,19 @@ import java.util.Optional;
 
 public interface IUserRepository extends JpaRepository<User, Long> {
 
-    // Find by username using a custom SQL query
+    // Find by username
     @Query("SELECT u FROM User u WHERE u.username = :username")
     Optional<User> findByUsername(@Param("username") String username);
 
-    // Find by role using a custom SQL query
+    // Find by role
     @Query("SELECT u FROM User u WHERE u.role = :role")
     List<User> findByRole(@Param("role") String role);
 
-    // Find by region using a custom SQL query
+    // Find by region
     @Query("SELECT u FROM User u WHERE u.region = :region")
     List<User> findByRegion(@Param("region") String region);
 
-    // Find users created after a specific date using a custom SQL query
+    // Find users created after a specific date
     @Query("SELECT u FROM User u WHERE u.createdAt > :registrationDate")
     List<User> findByCreatedAtAfter(@Param("registrationDate") LocalDateTime registrationDate);
 }

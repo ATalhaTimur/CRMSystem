@@ -14,8 +14,8 @@ public class Customer {
     private String lastName;
     private String email;
     private String region;
-    private LocalDate registrationDate;  // Updated to LocalDate (yyyy-MM-dd format)
-    private LocalDate updatedAt;  // Updated to LocalDate for consistency
+    private LocalDate registrationDate;  //  LocalDate (yyyy-MM-dd format)
+    private LocalDate updatedAt;
 
     // Getter and Setter methods
 

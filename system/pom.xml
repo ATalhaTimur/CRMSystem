@@ -7,8 +7,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.1</version> <!-- Stabil versiyon, milestone yerine bu versiyona geçiyoruz -->
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>3.3.1</version>
+		<relativePath/>
 	</parent>
 
 	<groupId>com.crm</groupId>
@@ -18,7 +18,7 @@
 	<description>CRM System with Spring Boot and JSP</description>
 
 	<properties>
-		<java.version>22</java.version> <!-- Eski projende de 22 vardı, bu aynı kalabilir -->
+		<java.version>22</java.version>
 	</properties>
 
 	<dependencies>
