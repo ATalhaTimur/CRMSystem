@@ -114,4 +114,42 @@ public class CustomerServiceTest {
         assertEquals("North", result.get(0).getRegion());
         verify(customerRepository, times(1)).findByRegion("North");
     }
+
+    @Test
+    void testGetCustomersCreatedAfter() {
+        // Arrange
+        LocalDate date = LocalDate.of(2023, 1, 1);
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setLastName("Doe");
+        customer.setRegistrationDate(LocalDate.of(2023, 2, 1));
+
+        when(customerRepository.findByRegistrationDateAfter(date)).thenReturn(Arrays.asList(customer));
+
+        // Act
+        List<Customer> result = customerService.getCustomersCreatedAfter(date);
+
+        // Assert
+        assertEquals(1, result.size());
+        assertTrue(result.get(0).getRegistrationDate().isAfter(date));
+        verify(customerRepository, times(1)).findByRegistrationDateAfter(date);
+    }
+
+    @Test
+    void testGetCustomerByEmail() {
+        // Arrange
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setEmail("john@example.com");
+
+        when(customerRepository.findByEmail("john@example.com")).thenReturn(customer);
+
+        // Act
+        Optional<Customer> result = customerService.getCustomerByEmail("john@example.com");
+
+        // Assert
+        assertTrue(result.isPresent());
+        assertEquals("john@example.com", result.get().getEmail());
+        verify(customerRepository, times(1)).findByEmail("john@example.com");
+    }
 }
