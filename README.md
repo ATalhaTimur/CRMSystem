@@ -12,7 +12,8 @@ This project is a **Customer Relationship Management (CRM)** system designed to 
 - ✅ **Docker Integration**: The project is containerized using Docker for easy setup and deployment.
 - ✅ **MySQL Database**: The system uses MySQL for data storage.
 - ⚙️ **API as a Service**: Runs outside of Docker to ease debugging during development.
-- ⏳ **Authentication System**: Will be added in the future using **Spring Security** for role-based access control.
+  
+- **⏳ **Authentication System**: Will be added in the future using **Spring Security** for role-based access control.**
 
 ## Technologies Used
 
